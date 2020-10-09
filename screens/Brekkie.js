@@ -3,7 +3,7 @@ import { Button, View, Text, Image, StyleSheet, ScrollView } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-
+// breakfast menu
 
 const Stack = createStackNavigator();
 

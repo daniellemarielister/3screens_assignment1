@@ -9,7 +9,8 @@ import Potions from '../screens/Potions';
 
 const Stack = createStackNavigator();
 
-export default function Details({ navigation }) {
+// Menu page for the food menus
+export default function Menus({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#173D3D', }}>
         <View style={styles.topContainer}>
@@ -29,7 +30,6 @@ export default function Details({ navigation }) {
             <TouchableOpacity 
             onPress={() => navigation.navigate('Nourishments')}>
               <Image
-              // style={styles.button}
               source={require('../assets/Images/nourish.png')}
               />
             </TouchableOpacity>
@@ -38,7 +38,6 @@ export default function Details({ navigation }) {
             <TouchableOpacity 
             onPress={() => navigation.navigate('Potions')}>
               <Image
-              // style={styles.button}
               source={require('../assets/Images/potions.png')}
               />
             </TouchableOpacity>
@@ -48,7 +47,7 @@ export default function Details({ navigation }) {
             <View style={styles.buttonContainer}>
                 <Button
                 color= '#E8A391'
-                title="Show Me the Yum"
+                title="Book a Table"
                 onPress={() => navigation.navigate('Details')}
                 />
             </View>

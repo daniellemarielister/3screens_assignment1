@@ -1,11 +1,59 @@
 import * as React from 'react';
-import { Button, View, Text, Image, StyleSheet, } from 'react-native';
+import { Button, View, Text, Image, StyleSheet, Animated} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Details from '../screens/Details';
+import Menus from '../screens/Details';
+import { Component } from 'react';
+
+// Initial Screen
 
 const Stack = createStackNavigator();
+
+class ImageLoader extends Component {
+  // aniation for logo
+  state = {
+    opacity: new Animated.Value(0),
+
+  }
+
+  onload = () => {
+    Animated.timing(this.state.opacity, {
+      toValue: 1,
+      duration: 500,
+      delay: 1000,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  render() {
+    return (
+      <Animated.Image
+        onLoad={this.onload}
+        {...this.props}
+        style={[
+          {
+            opacity: this.state.opacity,
+            transform: [
+              {
+                scale: this.state.opacity.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [1.5,1],
+                })
+
+                // translateY: this.state.opacity.interpolate({
+                //   inputRange: [0, 1],
+                //   outputRange: [50, 0],
+                // })
+              }
+            ]
+          },
+          this.props.style,
+        ]}
+      />
+    )
+  }
+}
 
 
 export default function HomeScreen({ navigation }) {
@@ -15,7 +63,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.topContainer}></View>
         
         <View style={styles.middleContainer}>
-        <Image style={styles.logo}source={require('../assets/Images/logo.png')}></Image>
+        <ImageLoader style={styles.logo}source={require('../assets/Images/logo.png')}></ImageLoader>
 
             
         </View>
@@ -24,7 +72,7 @@ export default function HomeScreen({ navigation }) {
                 <Button
                 color= '#E8A391'
                 title="Show Me the Yum"
-                onPress={() => navigation.navigate('Details')}
+                onPress={() => navigation.navigate('Menus')}
                 />
             </View>
         </View>
